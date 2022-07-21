@@ -8,10 +8,11 @@ It's basically just a wrapper of [`wm.obj_import`](https://docs.blender.org/api/
 
 | Branch | Version | Release | 
 | :------ | :--- | :------ |
-| [Blender 2.65]() | 0.1.0 | [Download]() |
-| [Blender 2.80]() | 0.2.0 | [Download]() |
-| [Blender 2.92]() | 0.3.0 | [Download]() |
-| [Blender 3.2]()  | 0.4.0 | [Download]() |
+| [Blender 2.65+]() | 0.1.0 | [Download]() |
+| [Blender 2.80+]() | 0.2.0 | [Download]() |
+| [Blender 2.92+]() | 0.3.0 | [Download]() |
+| [Blender 3.2+]()  | 0.4.0 | [Download]() |
+| [Blender 3.3+]()  | 0.5.0 | [Download]() |
 
 ## Installation
 
