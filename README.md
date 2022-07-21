@@ -16,7 +16,7 @@ It's basically just a wrapper of [`wm.obj_import`](https://docs.blender.org/api/
 
 ## Installation
 
-1. Download the correct [release version of the add-on](/#Versions) to match your version of Blender
+1. Download the correct [release version of the add-on](#Versions) to match your version of Blender
 1. In Blender open up *User Preferences > Addons*
 1. Click *Install from File*, select `io_batch_import_objs.py` and activate the Add-on
 
