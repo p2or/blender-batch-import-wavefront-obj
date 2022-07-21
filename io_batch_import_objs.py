@@ -17,21 +17,21 @@
 # ##### END GPL LICENSE BLOCK #####
 # <pep8 compliant>
 
+
 bl_info = {
     "name": "Batch Import Wavefront (.obj)",
     "author": "p2or",
-    "version": (0, 1, 0),
-    "blender": (2, 92, 0),
+    "version": (0, 4, 0),
+    "blender": (3, 2, 0),
     "location": "File > Import-Export",
     "description": "Import multiple OBJ files, their UV's and materials",
-    "warning": "",
-    "wiki_url": "",
+    "doc_url": "https://github.com/p2or/blender-batch-import-wavefront-obj",
     "tracker_url": "https://github.com/p2or/blender-batch-import-wavefront-obj",
     "category": "Import-Export"}
 
 
 import bpy
-import os
+from pathlib import Path
 
 from bpy_extras.io_utils import ImportHelper
 
@@ -39,161 +39,99 @@ from bpy.props import (BoolProperty,
                        FloatProperty,
                        StringProperty,
                        EnumProperty,
-                       CollectionProperty
-                       )
+                       CollectionProperty)
 
 
-class ImportMultipleObjs(bpy.types.Operator, ImportHelper):
-    """Batch Import Wavefront obj"""
-    bl_idname = "import_scene.multiple_objs"
+class WM_OT_batchWavefront(bpy.types.Operator, ImportHelper):
+    """Batch Import Wavefront"""
+    bl_idname = "wm.obj_import_batch"
     bl_label = "Import multiple OBJ's"
     bl_options = {'PRESET', 'UNDO'}
 
-    # ImportHelper mixin class uses this
     filename_ext = ".obj"
 
     filter_glob = StringProperty(
             default="*.obj",
-            options={'HIDDEN'},
-            )
+            options={'HIDDEN'})
 
-    # Selected files
     files: CollectionProperty(type=bpy.types.PropertyGroup)
 
-    # List of operator properties, the attributes will be assigned
-    # to the class instance from the operator settings before calling.
-    edges_setting: BoolProperty(
-            name="Lines",
-            description="Import lines and faces with 2 verts as edge",
-            default=True,
-            )
-    smooth_groups_setting: BoolProperty(
-            name="Smooth Groups",
-            description="Surround smooth groups by sharp edges",
-            default=True,
-            )
-    split_objects_setting: BoolProperty(
-            name="Object",
-            description="Import OBJ Objects into Blender Objects",
-            default=True,
-            )
-    split_groups_setting: BoolProperty(
-            name="Group",
-            description="Import OBJ Groups into Blender Objects",
-            default=True,
-            )
-    groups_as_vgroups_setting: BoolProperty(
-            name="Poly Groups",
-            description="Import OBJ groups as vertex groups",
-            default=False,
-            )
-    image_search_setting: BoolProperty(
-            name="Image Search",
-            description="Search subdirs for any associated images "
-                        "(Warning, may be slow)",
-            default=True,
-            )
-    split_mode_setting: EnumProperty(
-            name="Split",
-            items=(('ON', "Split", "Split geometry, omits unused verts"),
-                   ('OFF', "Keep Vert Order", "Keep vertex order from file"),
-                   ),
-            )
     clamp_size_setting: FloatProperty(
-            name="Clamp Size",
-            description="Clamp bounds under this value (zero to disable)",
+            name="Clamp Bounding Box",
+            description="Resize the objects to keep bounding box" \
+                    "under this value. Value 0 diables clamping",
             min=0.0, max=1000.0,
             soft_min=0.0, soft_max=1000.0,
-            default=0.0,
-            )
+            default=0.0)
+    
     axis_forward_setting: EnumProperty(
-            name="Forward",
-            items=(('X', "X Forward", ""),
-                   ('Y', "Y Forward", ""),
-                   ('Z', "Z Forward", ""),
-                   ('-X', "-X Forward", ""),
-                   ('-Y', "-Y Forward", ""),
-                   ('-Z', "-Z Forward", ""),
+            name="Forward Axis",
+            items=(('X_FORWARD', "X", ""),
+                   ('Y_FORWARD', "Y", ""),
+                   ('Z_FORWARD', "Z", ""),
+                   ('NEGATIVE_X_FORWARD', "-X", ""),
+                   ('NEGATIVE_Y_FORWARD', "-Y", ""),
+                   ('NEGATIVE_Z_FORWARD', "-Z", ""),
                    ),
-            default='-Z',
-            )
+            default='NEGATIVE_Z_FORWARD')
+            
     axis_up_setting: EnumProperty(
-            name="Up",
-            items=(('X', "X Up", ""),
-                   ('Y', "Y Up", ""),
-                   ('Z', "Z Up", ""),
-                   ('-X', "-X Up", ""),
-                   ('-Y', "-Y Up", ""),
-                   ('-Z', "-Z Up", ""),
+            name="Up Axis",
+            items=(('X_UP', "X", ""),
+                   ('Y_UP', "Y", ""),
+                   ('Z_UP', "Z", ""),
+                   ('NEGATIVE_X_UP', "-X", ""),
+                   ('NEGATIVE_Y_UP', "-Y", ""),
+                   ('NEGATIVE_Z_UP', "-Z", ""),
                    ),
-            default='Y',
-            )
-
+            default='Y_UP')
+            
+    validate_setting: BoolProperty(
+            name="Validate Meshes",
+            description="Check imported mesh objects for invalid data")
+    
     def draw(self, context):
         layout = self.layout
-
-        row = layout.row(align=True)
-        row.prop(self, "smooth_groups_setting")
-        row.prop(self, "edges_setting")
-
+        layout.use_property_split = True
+        layout.use_property_decorate = False  # No animation.
+        
         box = layout.box()
-        row = box.row()
-        row.prop(self, "split_mode_setting", expand=True)
-
-        row = box.row()
-        if self.split_mode_setting == 'ON':
-            row.label(text="Split by:")
-            row.prop(self, "split_objects_setting")
-            row.prop(self, "split_groups_setting")
-        else:
-            row.prop(self, "groups_as_vgroups_setting")
-
-        row = layout.split(factor=0.67)
-        row.prop(self, "clamp_size_setting")
-        layout.prop(self, "axis_forward_setting")
-        layout.prop(self, "axis_up_setting")
-
-        layout.prop(self, "image_search_setting")
+        box.label(text="Transform", icon='OBJECT_DATA')
+        col = box.column()
+        col.prop(self, "clamp_size_setting")
+        col.prop(self, "axis_forward_setting")
+        col.prop(self, "axis_up_setting")
+        
+        box = layout.box()
+        box.label(text="Options", icon='EXPORT')
+        box.column().prop(self, "validate_setting")
 
     def execute(self, context):
-
-        # get the folder
-        folder = os.path.dirname(self.filepath)
-
-        # iterate through the selected files
-        for i in self.files:
-
-            # generate full path to file
-            path_to_file = os.path.join(folder, i.name)
-
-            # call obj operator and assign ui values                  
-            bpy.ops.import_scene.obj(
-                                filepath = path_to_file,
-                                axis_forward = self.axis_forward_setting,
-                                axis_up = self.axis_up_setting, 
-                                use_edges = self.edges_setting,
-                                use_smooth_groups = self.smooth_groups_setting, 
-                                use_split_objects = self.split_objects_setting,
-                                use_split_groups = self.split_groups_setting,
-                                use_groups_as_vgroups = self.groups_as_vgroups_setting,
-                                use_image_search = self.image_search_setting,
-                                split_mode = self.split_mode_setting,
-                                global_clamp_size = self.clamp_size_setting)
-
+        folder = Path(self.filepath)
+        for selection in self.files:
+            fp = Path(folder.parent, selection.name)
+            if fp.suffix == '.obj':
+                bpy.ops.wm.obj_import(
+                                filepath = str(fp),
+                                forward_axis = self.axis_forward_setting,
+                                up_axis = self.axis_up_setting,
+                                clamp_size = self.clamp_size_setting,
+                                validate_meshes = self.validate_setting
+                                )
         return {'FINISHED'}
 
 
-# Only needed if you want to add into a dynamic menu
 def menu_func_import(self, context):
-    self.layout.operator(ImportMultipleObjs.bl_idname, text="Wavefront Batch (.obj)")
-
+    self.layout.operator(
+                WM_OT_batchWavefront.bl_idname, 
+                text="Wavefront Batch (.obj)")
 
 def register():
-    bpy.utils.register_class(ImportMultipleObjs)
+    bpy.utils.register_class(WM_OT_batchWavefront)
     bpy.types.TOPBAR_MT_file_import.append(menu_func_import)
 
 def unregister():
-    bpy.utils.unregister_class(ImportMultipleObjs)
+    bpy.utils.unregister_class(WM_OT_batchWavefront)
     bpy.types.TOPBAR_MT_file_import.remove(menu_func_import)
 
 
@@ -201,4 +139,4 @@ if __name__ == "__main__":
     register()
 
     # test call
-    #bpy.ops.import_scene.multiple_objs('INVOKE_DEFAULT')
+    #bpy.ops.wm.obj_import_batch('INVOKE_DEFAULT')
