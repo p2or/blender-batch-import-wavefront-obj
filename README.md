@@ -6,17 +6,17 @@ It's basically just a wrapper of [`wm.obj_import`](https://docs.blender.org/api/
 
 ## Versions
 
-| Branch | Version | Release | 
+| Blender/Branch | Latest Version | Release | 
 | :------ | :--- | :------ |
 | [Blender 2.65+](../../tree/Blender-2.65+) | 0.1.0 | [Download](../../releases/download/v0.1.0/io_batch_import_objs.py) |
-| [Blender 2.80+](../../tree/Blender-2.80+) | 0.2.0 | [Download]() |
-| [Blender 2.92+](../../tree/Blender-2.92+) | 0.3.0 | [Download]() |
-| [Blender 3.2+](../../tree/Blender-3.2+)  | 0.4.0 | [Download]() |
-| [Blender 3.3+](../../tree/Blender-3.3+)  | 0.5.0 | [Download]() |
+| [Blender 2.80+](../../tree/Blender-2.80+) | 0.2.0 | [Download](../../releases/download/v0.2.0/io_batch_import_objs.py) |
+| [Blender 2.92+](../../tree/Blender-2.92+) | 0.3.0 | [Download](../../releases/download/v0.3.0/io_batch_import_objs.py) |
+| [Blender 3.2+](../../tree/Blender-3.2+)   | 0.4.0 | [Download](../../releases/download/v0.4.0/io_batch_import_objs.py) |
+| [Blender 3.3+](../../tree/Blender-3.3+)   | 0.5.0 | [Download](../../releases/download/v0.5.0/io_batch_import_objs.py) |
 
 ## Installation
 
-1. Download the correct release of the add-on to match your version of Blender
+1. Download the correct [release version of the add-on](/#Versions) to match your version of Blender
 1. In Blender open up *User Preferences > Addons*
 1. Click *Install from File*, select `io_batch_import_objs.py` and activate the Add-on
 
