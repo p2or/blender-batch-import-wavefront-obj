@@ -21,12 +21,12 @@
 bl_info = {
     "name": "Batch Import Wavefront (.obj)",
     "author": "p2or",
-    "version": (0, 4, 0),
-    "blender": (3, 2, 0),
+    "version": (0, 5, 0),
+    "blender": (3, 3, 0),
     "location": "File > Import-Export",
-    "description": "Import multiple OBJ files, their UV's and materials",
-    "doc_url": "https://github.com/p2or/blender-batch-import-wavefront-obj",
-    "tracker_url": "https://github.com/p2or/blender-batch-import-wavefront-obj",
+    "description": "Import multiple OBJ files, UV's and their materials",
+    "doc_url": "https://blender.stackexchange.com/a/31825/31447",
+    "tracker_url": "https://gist.github.com/p2or/3e11481b867348511748212324571eeb",
     "category": "Import-Export"}
 
 
@@ -66,29 +66,34 @@ class WM_OT_batchWavefront(bpy.types.Operator, ImportHelper):
     
     axis_forward_setting: EnumProperty(
             name="Forward Axis",
-            items=(('X_FORWARD', "X", ""),
-                   ('Y_FORWARD', "Y", ""),
-                   ('Z_FORWARD', "Z", ""),
-                   ('NEGATIVE_X_FORWARD', "-X", ""),
-                   ('NEGATIVE_Y_FORWARD', "-Y", ""),
-                   ('NEGATIVE_Z_FORWARD', "-Z", ""),
+            items=(('X', "X", ""),
+                   ('Y', "Y", ""),
+                   ('Z', "Z", ""),
+                   ('NEGATIVE_X', "-X", ""),
+                   ('NEGATIVE_Y', "-Y", ""),
+                   ('NEGATIVE_Z', "-Z", ""),
                    ),
-            default='NEGATIVE_Z_FORWARD')
+            default='NEGATIVE_Z')
             
     axis_up_setting: EnumProperty(
             name="Up Axis",
-            items=(('X_UP', "X", ""),
-                   ('Y_UP', "Y", ""),
-                   ('Z_UP', "Z", ""),
-                   ('NEGATIVE_X_UP', "-X", ""),
-                   ('NEGATIVE_Y_UP', "-Y", ""),
-                   ('NEGATIVE_Z_UP', "-Z", ""),
+            items=(('X', "X", ""),
+                   ('Y', "Y", ""),
+                   ('Z', "Z", ""),
+                   ('NEGATIVE_X', "-X", ""),
+                   ('NEGATIVE_Y', "-Y", ""),
+                   ('NEGATIVE_Z', "-Z", ""),
                    ),
-            default='Y_UP')
+            default='Y')
             
     validate_setting: BoolProperty(
             name="Validate Meshes",
             description="Check imported mesh objects for invalid data")
+    
+    vgroup_setting: BoolProperty(
+            name="Vertex Groups",
+            description="Import OBJ groups as vertex groups")
+            
     
     def draw(self, context):
         layout = self.layout
@@ -104,7 +109,9 @@ class WM_OT_batchWavefront(bpy.types.Operator, ImportHelper):
         
         box = layout.box()
         box.label(text="Options", icon='EXPORT')
-        box.column().prop(self, "validate_setting")
+        col = box.column()
+        col.prop(self, "vgroup_setting")
+        col.prop(self, "validate_setting")
 
     def execute(self, context):
         folder = Path(self.filepath)
@@ -116,7 +123,8 @@ class WM_OT_batchWavefront(bpy.types.Operator, ImportHelper):
                                 forward_axis = self.axis_forward_setting,
                                 up_axis = self.axis_up_setting,
                                 clamp_size = self.clamp_size_setting,
-                                validate_meshes = self.validate_setting
+                                validate_meshes = self.validate_setting,
+                                import_vertex_groups = self.vgroup_setting
                                 )
         return {'FINISHED'}
 
