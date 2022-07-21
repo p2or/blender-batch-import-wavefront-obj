@@ -20,8 +20,8 @@
 bl_info = {
     "name": "Batch Import Wavefront (.obj)",
     "author": "p2or",
-    "version": (0, 2, 0),
-    "blender": (2, 80, 0),
+    "version": (0, 1, 0),
+    "blender": (2, 92, 0),
     "location": "File > Import-Export",
     "description": "Import multiple OBJ files, their UV's and materials",
     "warning": "",
@@ -155,7 +155,6 @@ class ImportMultipleObjs(bpy.types.Operator, ImportHelper):
 
         layout.prop(self, "image_search_setting")
 
-
     def execute(self, context):
 
         # get the folder
@@ -179,7 +178,7 @@ class ImportMultipleObjs(bpy.types.Operator, ImportHelper):
                                 use_groups_as_vgroups = self.groups_as_vgroups_setting,
                                 use_image_search = self.image_search_setting,
                                 split_mode = self.split_mode_setting,
-                                global_clight_size = self.clamp_size_setting)
+                                global_clamp_size = self.clamp_size_setting)
 
         return {'FINISHED'}
 
