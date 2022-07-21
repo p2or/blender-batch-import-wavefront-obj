@@ -1,10 +1,10 @@
-# Batch import [Wavefront .obj files](https://en.wikipedia.org/wiki/Wavefront_.obj_file)
+# Batch import [Wavefront .obj files](https://en.wikipedia.org/wiki/Wavefront_.obj_file) 
 
 A simple Blender add-on that allows to **multiple OBJ files at once** and comes with the usual settings.
 
 ![g5YV0](https://user-images.githubusercontent.com/512368/180241128-afad221b-64a1-4b9c-87bd-bf5559f1d8b1.png)
 
-It's basically just a wrapper of [`import_scene.obj`](https://docs.blender.org/api/blender_python_api_2_74_5/bpy.ops.import_scene.html?highlight=import_scene.obj#bpy.ops.import_scene.obj) operator until importing multiple .obj files is supported officially.
+It's basically just a wrapper of [`import_scene.obj`](https://docs.blender.org/api/blender_python_api_2_74_5/bpy.ops.import_scene.html?highlight=import_scene.obj#bpy.ops.import_scene.obj) operator until importing multiple `.obj` files is supported officially.
 
 ## Installation
 
