@@ -16,6 +16,8 @@ The add-on is basically just a wrapper of [`wm.obj_import`](https://docs.blender
 | [Blender 3.2+](../../tree/Blender-3.2+)        | 0.4.0 | [Download](../../releases/download/v0.4.0/io_batch_import_objs.py) |
 | [Blender 3.3 (Alpha)](../../tree/Blender-3.3+) | 0.5.0 | [Download](../../releases/download/v0.5.0/io_batch_import_objs.py) |
 
+<!-- [All Releases](../../releases/) -->
+
 ## Installation
 
 1. Download the correct [release version of the add-on](#Versions) to match your version of Blender
