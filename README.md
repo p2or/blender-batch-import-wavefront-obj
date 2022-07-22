@@ -4,7 +4,7 @@ A tiny add-on for Blender that allows to **multiple OBJ files at once** and come
 
 | <img width="771" alt="main_image-blender-3-2" src="https://user-images.githubusercontent.com/512368/180396256-1f927624-7046-4385-ad1a-1450f9582246.png"> | <img width="761" alt="main_image-blender-2.92" src="https://user-images.githubusercontent.com/512368/180400220-e96f1e7f-201f-4b33-bbe9-6e52c9b1bd7f.png"> | <img width="772" alt="main_image-blender-2.79" src="https://user-images.githubusercontent.com/512368/180402784-d1007731-054f-4380-aede-a5de8945c505.png">|
 |:--:| :--:| :--:| 
-| Blender 3.2+ | Blender 2.80 - 2.92 | Blender 2.65+ |
+| Blender 3.2+ | Blender 2.80 - Blender 3.1 | Blender 2.65 - Blender 2.79 |
 
 ### Background
 
