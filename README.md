@@ -4,7 +4,7 @@ A simple Blender add-on that allows to **multiple OBJ files at once** and comes 
 
 
 
-The Add-on is basically just a wrapper of [`wm.obj_import`](https://docs.blender.org/api/current/bpy.ops.wm.html?highlight=obj_import#bpy.ops.wm.obj_import) or [`import_scene.obj`](https://docs.blender.org/api/blender_python_api_2_74_5/bpy.ops.import_scene.html?highlight=import_scene.obj#bpy.ops.import_scene.obj) operator in versions prior to Blender `3.2.0` until importing multiple .obj files is supported officially.
+The add-on is basically just a wrapper of [`wm.obj_import`](https://docs.blender.org/api/current/bpy.ops.wm.html?highlight=obj_import#bpy.ops.wm.obj_import) or [`import_scene.obj`](https://docs.blender.org/api/blender_python_api_2_74_5/bpy.ops.import_scene.html?highlight=import_scene.obj#bpy.ops.import_scene.obj) operator in versions prior to Blender `3.2.0` until importing multiple .obj files is supported officially.
 
 ## Versions
 
