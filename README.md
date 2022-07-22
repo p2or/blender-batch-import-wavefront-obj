@@ -22,4 +22,4 @@ This repository has emerged from [*How to batch import Wavefront OBJ files?*](ht
 
 1. Download the correct [release version of the add-on](#Versions) to match your version of Blender
 1. In Blender open up *Preferences > Addons*
-1. Click *Install*, select `io_batch_import_objs.py` and activate the Add-on
+1. Click *Install*, select `io_batch_import_objs.py` and activate the add-on
