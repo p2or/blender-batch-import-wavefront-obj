@@ -8,7 +8,7 @@ It's basically just a wrapper of [`import_scene.obj`](https://docs.blender.org/a
 
 ## Installation
 
-1. Download the [correct release of the add-on](../../tree/main) of the add-on to match your version of Blender
+1. Download the [correct release of the add-on](../../tree/main) to match your version of Blender
 1. In Blender open up *User Preferences > Addons*
 1. Click *Install from File*, select `io_batch_import_objs.py` and activate the Add-on
 
