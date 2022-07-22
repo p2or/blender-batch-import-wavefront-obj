@@ -2,7 +2,7 @@
 
 A simple Blender add-on that allows to **multiple OBJ files at once** and comes with the usual settings.
 
-<img width="459" alt="jfR50" src="https://user-images.githubusercontent.com/512368/180315620-80b66924-e23b-47ea-8147-e2bb94510197.png">
+<img width="736" alt="main_image-blender-2 80" src="https://user-images.githubusercontent.com/512368/180400139-ff452296-9b78-425a-a4ed-c62a688f4979.png">
 
 It's basically just a wrapper of [`import_scene.obj`](https://docs.blender.org/api/blender_python_api_2_74_5/bpy.ops.import_scene.html?highlight=import_scene.obj#bpy.ops.import_scene.obj) operator until importing multiple `.obj` files is supported officially.
 
