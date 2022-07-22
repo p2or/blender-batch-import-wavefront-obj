@@ -25,8 +25,8 @@ bl_info = {
     "blender": (3, 3, 0),
     "location": "File > Import-Export",
     "description": "Import multiple OBJ files, UV's and their materials",
-    "doc_url": "https://blender.stackexchange.com/a/31825/31447",
-    "tracker_url": "https://gist.github.com/p2or/3e11481b867348511748212324571eeb",
+    "doc_url": "https://github.com/p2or/blender-batch-import-wavefront-obj",
+    "tracker_url": "https://github.com/p2or/blender-batch-import-wavefront-obj",
     "category": "Import-Export"}
 
 
