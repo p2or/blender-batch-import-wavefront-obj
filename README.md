@@ -22,6 +22,12 @@ This repository has emerged from [*How to batch import Wavefront OBJ files?*](ht
 
 <!-- [All Releases](../../releases/) -->
 
+**Note:** Version `0.3.0` still works in Blender 3.2+ if the old importer from Campbell and Bastien is *enabled* in the preferences.
+
+<!-- <img width="683" alt="old-obj-importer" src="https://user-images.githubusercontent.com/512368/180616318-3de16656-161d-437a-b3c1-a90627887181.png"> -->
+
+
+
 ## Installation
 
 1. Download the correct [release version of the add-on](#Versions) to match your version of Blender
