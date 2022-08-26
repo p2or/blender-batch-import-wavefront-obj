@@ -118,6 +118,10 @@ class WM_OT_batchWavefront(bpy.types.Operator, ImportHelper):
                                 clamp_size = self.clamp_size_setting,
                                 validate_meshes = self.validate_setting
                                 )
+                # assign filename (without extension) to the imported object
+                for importedObj in bpy.context.selected_objects:
+                    importedObj.name = os.path.splitext(selection.name)[0]
+
         return {'FINISHED'}
 
 
