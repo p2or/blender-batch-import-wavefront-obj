@@ -21,8 +21,8 @@
 bl_info = {
     "name": "Batch Import Wavefront (.obj)",
     "author": "p2or",
-    "version": (0, 5, 0),
-    "blender": (3, 3, 0),
+    "version": (0, 6, 0),
+    "blender": (3, 4, 0),
     "location": "File > Import-Export",
     "description": "Import multiple OBJ files, UV's and their materials",
     "doc_url": "https://github.com/p2or/blender-batch-import-wavefront-obj",
@@ -104,8 +104,11 @@ class WM_OT_batchWavefront(bpy.types.Operator, ImportHelper):
         box.label(text="Transform", icon='OBJECT_DATA')
         col = box.column()
         col.prop(self, "clamp_size_setting")
-        col.prop(self, "axis_forward_setting")
-        col.prop(self, "axis_up_setting")
+        col.separator()
+        col.row().prop(self, "axis_forward_setting", expand=True)
+        col.separator(factor=0.5)
+        col.row().prop(self, "axis_up_setting", expand=True)
+        col.separator()
         
         box = layout.box()
         box.label(text="Options", icon='EXPORT')
