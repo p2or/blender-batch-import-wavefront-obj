@@ -21,7 +21,7 @@
 bl_info = {
     "name": "Batch Import Wavefront (.obj)",
     "author": "p2or",
-    "version": (0, 6, 0),
+    "version": (0, 6, 1),
     "blender": (3, 4, 0),
     "location": "File > Import-Export",
     "description": "Import multiple OBJ files, UV's and their materials",
@@ -55,6 +55,14 @@ class WM_OT_batchWavefront(bpy.types.Operator, ImportHelper):
             options={'HIDDEN'})
 
     files: CollectionProperty(type=bpy.types.PropertyGroup)
+
+    global_scale_setting: FloatProperty(
+            name="Scale",
+            description="Value by which to enlarge or shrink" \
+                    "the objects with respect to the world origin",
+            min=0.0001, max=10000.0,
+            soft_min=0.01, soft_max=1000.0,
+            default=1.0)
 
     clamp_size_setting: FloatProperty(
             name="Clamp Bounding Box",
@@ -103,6 +111,7 @@ class WM_OT_batchWavefront(bpy.types.Operator, ImportHelper):
         box = layout.box()
         box.label(text="Transform", icon='OBJECT_DATA')
         col = box.column()
+        col.prop(self, "global_scale_setting")
         col.prop(self, "clamp_size_setting")
         col.separator()
         col.row().prop(self, "axis_forward_setting", expand=True)
@@ -123,11 +132,12 @@ class WM_OT_batchWavefront(bpy.types.Operator, ImportHelper):
             if fp.suffix == '.obj':
                 bpy.ops.wm.obj_import(
                                 filepath = str(fp),
+                                global_scale = self.global_scale_setting,
+                                clamp_size = self.clamp_size_setting,
                                 forward_axis = self.axis_forward_setting,
                                 up_axis = self.axis_up_setting,
-                                clamp_size = self.clamp_size_setting,
-                                validate_meshes = self.validate_setting,
-                                import_vertex_groups = self.vgroup_setting
+                                import_vertex_groups = self.vgroup_setting,
+                                validate_meshes = self.validate_setting
                                 )
         return {'FINISHED'}
 
