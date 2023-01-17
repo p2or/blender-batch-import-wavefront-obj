@@ -21,8 +21,8 @@
 bl_info = {
     "name": "Batch Import Wavefront (.obj)",
     "author": "p2or",
-    "version": (0, 6, 1),
-    "blender": (3, 4, 0),
+    "version": (0, 6, 0),
+    "blender": (3, 5, 0),
     "location": "File > Import-Export",
     "description": "Import multiple OBJ files, UV's and their materials",
     "doc_url": "https://github.com/p2or/blender-batch-import-wavefront-obj",
@@ -55,7 +55,7 @@ class WM_OT_batchWavefront(bpy.types.Operator, ImportHelper):
             options={'HIDDEN'})
 
     files: CollectionProperty(type=bpy.types.PropertyGroup)
-
+    
     global_scale_setting: FloatProperty(
             name="Scale",
             description="Value by which to enlarge or shrink" \
@@ -101,6 +101,15 @@ class WM_OT_batchWavefront(bpy.types.Operator, ImportHelper):
     vgroup_setting: BoolProperty(
             name="Vertex Groups",
             description="Import OBJ groups as vertex groups")
+
+    use_split_objects_setting: BoolProperty(
+            name="Split By Object",
+            default=True,
+            description="Import each OBJ 'o' as a separate object")
+
+    use_split_groups_setting: BoolProperty(
+            name="Split By Group",
+            description="Import each OBJ 'o' as a separate object")
             
     
     def draw(self, context):
@@ -122,6 +131,8 @@ class WM_OT_batchWavefront(bpy.types.Operator, ImportHelper):
         box = layout.box()
         box.label(text="Options", icon='EXPORT')
         col = box.column()
+        col.prop(self, "use_split_objects_setting")
+        col.prop(self, "use_split_groups_setting")
         col.prop(self, "vgroup_setting")
         col.prop(self, "validate_setting")
 
@@ -136,6 +147,8 @@ class WM_OT_batchWavefront(bpy.types.Operator, ImportHelper):
                                 clamp_size = self.clamp_size_setting,
                                 forward_axis = self.axis_forward_setting,
                                 up_axis = self.axis_up_setting,
+                                use_split_objects = self.use_split_objects_setting,
+                                use_split_groups = self.use_split_groups_setting,
                                 import_vertex_groups = self.vgroup_setting,
                                 validate_meshes = self.validate_setting
                                 )
