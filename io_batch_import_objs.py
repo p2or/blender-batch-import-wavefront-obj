@@ -21,7 +21,7 @@
 bl_info = {
     "name": "Batch Import Wavefront (.obj)",
     "author": "p2or",
-    "version": (0, 6, 0),
+    "version": (0, 7, 0),
     "blender": (3, 5, 0),
     "location": "File > Import-Export",
     "description": "Import multiple OBJ files, UV's and their materials",
