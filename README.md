@@ -19,10 +19,10 @@ This repository has emerged from [*How to batch import Wavefront OBJ files?*](ht
 | [Blender 2.65+](../../tree/Blender-2.65+)      | 0.1.0 | [Download](../../releases/download/v0.1.0/io_batch_import_objs.py) |
 | [Blender 2.80+](../../tree/Blender-2.80+)      | 0.2.0 | [Download](../../releases/download/v0.2.0/io_batch_import_objs.py) |
 | [Blender 2.92+](../../tree/Blender-2.92+)      | 0.3.0 | [Download](../../releases/download/v0.3.0/io_batch_import_objs.py) |
-| [Blender 3.2.0+](../../tree/Blender-3.2+)      | 0.4.0 | [Download](../../releases/download/v0.4.0/io_batch_import_objs.py) |
-| [Blender 3.3.0+](../../tree/Blender-3.3+)      | 0.5.0 | [Download](../../releases/download/v0.5.0/io_batch_import_objs.py) |
-| [Blender 3.4.0+](../../tree/Blender-3.4+)      | 0.6.1 | [Download](../../releases/download/v0.6.1/io_batch_import_objs.py) |
-| [Blender 3.5.0+](../../tree/Blender-3.5+)      | 0.7.0 | [Download](../../releases/download/v0.7.0/io_batch_import_objs.py) |
+| [Blender 3.2+](../../tree/Blender-3.2+)      | 0.4.0 | [Download](../../releases/download/v0.4.0/io_batch_import_objs.py) |
+| [Blender 3.3+](../../tree/Blender-3.3+)      | 0.5.0 | [Download](../../releases/download/v0.5.0/io_batch_import_objs.py) |
+| [Blender 3.4+](../../tree/Blender-3.4+)      | 0.6.1 | [Download](../../releases/download/v0.6.1/io_batch_import_objs.py) |
+| [Blender 3.5+](../../tree/Blender-3.5+)      | 0.7.0 | [Download](../../releases/download/v0.7.0/io_batch_import_objs.py) |
 
 <!-- [All Releases](../../releases/) -->
 
