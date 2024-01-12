@@ -1,6 +1,6 @@
 # Batch import [Wavefront .obj files](https://en.wikipedia.org/wiki/Wavefront_.obj_file)
 
-A tiny add-on for Blender that allows to **multiple OBJ files at once** and comes with the usual import settings. 
+A tiny add-on for Blender that allows to import **multiple OBJ files at once** and comes with the usual settings. 
 
 | <img width="754" alt="Batch Import Obj - Blender 3.4" src="https://user-images.githubusercontent.com/512368/195837831-969144c3-131e-44ef-afb7-7ccb3c370f88.png"> | <img width="771" alt="main_image-blender-3-2" src="https://user-images.githubusercontent.com/512368/180396256-1f927624-7046-4385-ad1a-1450f9582246.png"> | 
 |:--:|:--:|
